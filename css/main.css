@@ -300,14 +300,19 @@ body {
   font-weight: 500;
 }
 
-/* Aspect ratio overrides */
-.portraits-grid .gallery-item { aspect-ratio: 3 / 4; }
+/* Aspect ratio overrides — all categories now auto-size based on image orientation */
+.portraits-grid .gallery-item { 
+  aspect-ratio: auto;
+  min-height: 200px;
+}
 .events-grid .gallery-item { 
-  /* allow events to size based on image orientation so vertical shots are visible */
   aspect-ratio: auto; 
   min-height: 180px;
 }
-.products-grid .gallery-item { aspect-ratio: 16 / 9; }
+.products-grid .gallery-item { 
+  aspect-ratio: auto;
+  min-height: 180px;
+}
 
 /* Image orientation helpers (set by JS) */
 .gallery-item img.landscape { object-fit: cover; }
@@ -472,4 +477,86 @@ body {
   .hero-subtitle { font-size: 1rem; }
   .section { padding: 6rem 5% 4rem; }
   .slider-prev, .slider-next { width: 50px; height: 50px; font-size: 1.4rem; }
+}
+
+/* ── LIGHTBOX / MODAL ── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  padding: 3vh 4vw;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-inner {
+  max-width: 1200px;
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.lightbox-media {
+  width: 100%;
+  height: calc(92vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.lightbox-media img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.lightbox-caption {
+  color: #fff;
+  font-size: 0.98rem;
+  text-align: center;
+  max-width: 1100px;
+  opacity: 0.95;
+}
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1010;
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.9);
+  font-size: 2.4rem;
+  background: transparent;
+  border: none;
+  width: 52px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lightbox-prev { left: 12px; }
+.lightbox-next { right: 12px; }
+
+@media (max-width: 720px) {
+  .lightbox-media { height: calc(72vh - 64px); }
+  .lightbox-caption { font-size: 0.95rem; }
 }
