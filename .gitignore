@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+.env.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Dependency management
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build
+dist/
+build/
+*.zip
+
+# Logs
+*.log
+npm-debug.log*
+
+# Deployment
+.vercel
+.netlify
