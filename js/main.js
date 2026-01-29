@@ -79,3 +79,22 @@ document.querySelectorAll('button').forEach(btn => {
     });
   }
 });
+
+// ── IMAGE ORIENTATION HANDLER ──
+function applyImageOrientation() {
+  const imgs = document.querySelectorAll('.gallery-item img');
+  imgs.forEach(img => {
+    function setClass() {
+      if (!img.naturalWidth || !img.naturalHeight) return;
+      img.classList.remove('portrait','landscape');
+      if (img.naturalHeight > img.naturalWidth) img.classList.add('portrait');
+      else img.classList.add('landscape');
+    }
+
+    if (img.complete) setClass();
+    else img.addEventListener('load', setClass);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', applyImageOrientation);
+window.addEventListener('resize', applyImageOrientation);

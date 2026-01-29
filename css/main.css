@@ -302,8 +302,41 @@ body {
 
 /* Aspect ratio overrides */
 .portraits-grid .gallery-item { aspect-ratio: 3 / 4; }
-.events-grid .gallery-item,
+.events-grid .gallery-item { 
+  /* allow events to size based on image orientation so vertical shots are visible */
+  aspect-ratio: auto; 
+  min-height: 180px;
+}
 .products-grid .gallery-item { aspect-ratio: 16 / 9; }
+
+/* Image orientation helpers (set by JS) */
+.gallery-item img.landscape { object-fit: cover; }
+.gallery-item img.portrait { object-fit: contain; background: #000; }
+
+/* View All CTA */
+.view-all-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.1rem;
+  background: #111;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.view-all-cta:hover { transform: translateY(-3px); box-shadow: 0 18px 48px rgba(0,0,0,0.14); }
+
+/* Full gallery layout for landing pages */
+.gallery-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.gallery-full .gallery-item { aspect-ratio: auto; }
 
 /* ── ABOUT SECTION ── */
 .section--about {
